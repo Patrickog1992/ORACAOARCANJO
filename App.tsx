@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lock, ThumbsUp, CheckCircle2, CornerDownRight, ChevronRight } from 'lucide-react';
 import VideoPlayer from './components/VideoPlayer';
 import OfferModal from './components/OfferModal';
@@ -100,6 +100,18 @@ const App: React.FC = () => {
   // Data atual formatada
   const currentDate = new Date().toLocaleDateString('pt-BR');
   const [showOfferPage, setShowOfferPage] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
+  // VSL Timer Logic: 13 minutes and 35 seconds
+  // 13 * 60 = 780 seconds + 35 seconds = 815 seconds
+  // 815 * 1000 = 815000 milliseconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowButton(true);
+    }, 815000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // If the offer page is active, render ONLY the offer page (simulating a new page navigation)
   if (showOfferPage) {
@@ -153,19 +165,21 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Main CTA Button */}
-        <div className="w-full max-w-[400px] mx-auto mb-12 px-4 sm:px-0">
-          <button 
-            onClick={() => setShowOfferPage(true)}
-            className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-extrabold text-xl md:text-2xl py-5 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.5)] animate-pulse hover:animate-none hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 border-b-4 border-green-800"
-          >
-            QUERO RECEBER AS ORAÇÕES
-            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-          </button>
-          <p className="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1">
-            <Lock size={12} /> Acesso seguro e imediato
-          </p>
-        </div>
+        {/* Main CTA Button - DELAYED for VSL (13m 35s) */}
+        {showButton && (
+          <div className="w-full max-w-[400px] mx-auto mb-12 px-4 sm:px-0 animate-in fade-in duration-1000 slide-in-from-bottom-4">
+            <button 
+              onClick={() => setShowOfferPage(true)}
+              className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-extrabold text-xl md:text-2xl py-5 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.5)] animate-pulse hover:animate-none hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 border-b-4 border-green-800"
+            >
+              QUERO RECEBER AS ORAÇÕES
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
+            <p className="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1">
+              <Lock size={12} /> Acesso seguro e imediato
+            </p>
+          </div>
+        )}
 
         {/* Comments Section */}
         <div className="w-full max-w-2xl bg-white text-slate-900 rounded-lg shadow-xl overflow-hidden mt-4">
