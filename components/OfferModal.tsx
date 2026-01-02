@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle2, X } from 'lucide-react';
+import { CheckCircle2, ArrowLeft } from 'lucide-react';
 
 interface OfferModalProps {
   isOpen: boolean;
@@ -33,18 +33,19 @@ const OfferModal: React.FC<OfferModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-sm overflow-y-auto font-poppins animate-in fade-in duration-300">
+    <div className="min-h-screen w-full bg-slate-950 font-poppins animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         
-        {/* Close Button */}
+        {/* Back Button (Subtle) */}
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-4 text-white/50 hover:text-white transition"
+          className="absolute top-6 left-6 text-gray-500 hover:text-white transition flex items-center gap-2 text-sm font-medium"
         >
-          <X size={32} />
+          <ArrowLeft size={18} />
+          Voltar
         </button>
 
-        <div className="max-w-md w-full bg-slate-900 border border-gold-500/30 rounded-2xl shadow-2xl p-6 md:p-8 relative">
+        <div className="max-w-md w-full bg-slate-900/50 border border-gold-500/30 rounded-2xl shadow-2xl p-6 md:p-8 relative mt-8 md:mt-0">
           
           {/* Top Timer Bar */}
           <div className="bg-red-600/20 border border-red-500/50 rounded-lg p-3 text-center mb-8 animate-pulse">

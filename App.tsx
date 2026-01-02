@@ -99,7 +99,12 @@ const COMMENTS = [
 const App: React.FC = () => {
   // Data atual formatada
   const currentDate = new Date().toLocaleDateString('pt-BR');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showOfferPage, setShowOfferPage] = useState(false);
+
+  // If the offer page is active, render ONLY the offer page (simulating a new page navigation)
+  if (showOfferPage) {
+    return <OfferModal isOpen={true} onClose={() => setShowOfferPage(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-white selection:bg-gold-500 selection:text-black font-poppins flex flex-col">
@@ -151,7 +156,7 @@ const App: React.FC = () => {
         {/* Main CTA Button */}
         <div className="w-full max-w-[400px] mx-auto mb-12 px-4 sm:px-0">
           <button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setShowOfferPage(true)}
             className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-extrabold text-xl md:text-2xl py-5 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.5)] animate-pulse hover:animate-none hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 border-b-4 border-green-800"
           >
             QUERO RECEBER AS ORAÇÕES
@@ -253,8 +258,6 @@ const App: React.FC = () => {
         </footer>
 
       </main>
-
-      <OfferModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* Subtle background texture effect */}
       <div className="fixed inset-0 pointer-events-none opacity-20 z-0" style={{
