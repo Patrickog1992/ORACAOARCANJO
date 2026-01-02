@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 
 const VideoPlayer: React.FC = () => {
   useEffect(() => {
@@ -28,4 +28,4 @@ const VideoPlayer: React.FC = () => {
   );
 };
 
-export default VideoPlayer;
+export default memo(VideoPlayer);
