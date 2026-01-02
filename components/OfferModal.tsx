@@ -12,6 +12,13 @@ const OfferModal: React.FC<OfferModalProps> = ({ isOpen, onClose }) => {
   const [isCandleLit, setIsCandleLit] = useState(false);
   const [name, setName] = useState('');
 
+  // Scroll to top when opened
+  useEffect(() => {
+    if (isOpen) {
+      window.scrollTo(0, 0);
+    }
+  }, [isOpen]);
+
   // Timer Logic
   useEffect(() => {
     if (!isOpen || timeLeft <= 0) return;
