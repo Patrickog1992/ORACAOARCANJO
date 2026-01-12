@@ -139,7 +139,7 @@ const OfferModal: React.FC<OfferModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <a 
-                href="https://pay.kirvano.com/3a6ebdce-f5ce-4a44-896a-315d6c749bda"
+                href="https://go.perfectpay.com.br/PPU38CQ5T9B"
                 target="_blank"
                 rel="noreferrer"
                 className="block w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-black text-center py-4 rounded-lg text-lg uppercase tracking-wide shadow-lg hover:scale-[1.02] transition-transform"
