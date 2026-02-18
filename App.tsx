@@ -128,7 +128,7 @@ const App: React.FC = () => {
         
         {/* Main Headline */}
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-center leading-snug mb-8 tracking-tight drop-shadow-lg">
-          <span className="text-red-500 block mb-3 uppercase tracking-wide">40 ORAÇÕES SECRETAS DE SÃO MIGUEL PARA A QUARESMA:</span>
+          <span className="text-orange-400 block mb-3 uppercase tracking-wide">40 ORAÇÕES SECRETAS DE SÃO MIGUEL PARA A QUARESMA:</span>
           <span className="text-white block font-medium text-base md:text-lg lg:text-xl mt-4">
             Relatos dizem que pessoas começam a chorar nos primeiros segundos. <br className="hidden md:block" />
             Outras sentem um arrepio profundo. <br className="hidden md:block" />
