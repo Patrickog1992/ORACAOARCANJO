@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Lock, ThumbsUp, CheckCircle2, CornerDownRight, ChevronRight } from 'lucide-react';
 import VideoPlayer from './components/VideoPlayer';
-import OfferModal from './components/OfferModal';
 import SocialProofPopup from './components/SocialProofPopup';
 
 // Dados dos comentários com fotos reais
@@ -99,7 +98,6 @@ const COMMENTS = [
 const App: React.FC = () => {
   // Data atual formatada
   const currentDate = new Date().toLocaleDateString('pt-BR');
-  const [showOfferPage, setShowOfferPage] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
   // VSL Timer Logic: 13 minutes and 35 seconds
@@ -113,11 +111,6 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // If the offer page is active, render ONLY the offer page (simulating a new page navigation)
-  if (showOfferPage) {
-    return <OfferModal isOpen={true} onClose={() => setShowOfferPage(false)} />;
-  }
-
   return (
     <div className="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-white selection:bg-gold-500 selection:text-black font-poppins flex flex-col">
       
@@ -125,31 +118,36 @@ const App: React.FC = () => {
       <SocialProofPopup />
 
       {/* Top Warning Banner */}
-      <div className="w-full bg-red-700 text-white text-center py-3 px-4 text-sm md:text-base font-semibold shadow-lg z-50">
+      <div className="w-full bg-red-700 text-white text-center py-2 px-4 text-xs md:text-sm font-semibold shadow-lg z-50">
         <p>
-          Devido a grande pressão do vaticano esta bênção está disponível somente hoje <span className="text-yellow-300 font-bold px-1 rounded bg-red-800/30">{currentDate}</span>. Assista antes que saia do ar
+          Devido ao início da quaresma esta bênção está disponível somente hoje <span className="text-yellow-300 font-bold px-1 rounded bg-red-800/30">{currentDate}</span>. Assista antes que saia do ar
         </p>
       </div>
 
       <main className="flex-grow flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto relative z-10 w-full">
         
         {/* Main Headline */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center leading-tight mb-8 tracking-tight drop-shadow-lg">
-          <span className="text-red-500">40 orações secretas:</span> pessoas choram ao ouvir as orações por alguns segundos e sentem o toque do <span className="text-gold-400">Arcanjo Miguel</span>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-center leading-snug mb-8 tracking-tight drop-shadow-lg">
+          <span className="text-red-500 block mb-3 uppercase tracking-wide">40 ORAÇÕES SECRETAS DE SÃO MIGUEL PARA A QUARESMA:</span>
+          <span className="text-white block font-medium text-base md:text-lg lg:text-xl mt-4">
+            Relatos dizem que pessoas começam a chorar nos primeiros segundos. <br className="hidden md:block" />
+            Outras sentem um arrepio profundo. <br className="hidden md:block" />
+            Uma sensação inexplicável de proteção.
+          </span>
         </h1>
 
         {/* Sub-headline / Authority Section */}
         <div className="bg-white/5 border border-white/10 rounded-lg p-6 w-full mb-8 backdrop-blur-md">
           <div className="flex flex-col gap-4 text-center">
             
-            <p className="text-lg md:text-xl text-gray-200 font-medium">
+            <p className="text-base md:text-lg text-gray-200 font-medium">
               Frei Gilson traduziu todas as orações
             </p>
 
             <div className="h-px w-24 bg-white/20 mx-auto my-2"></div>
 
-            <p className="text-base md:text-lg text-gray-400 flex items-center justify-center gap-2">
-              <Lock size={18} className="text-gold-500" />
+            <p className="text-sm md:text-base text-gray-400 flex items-center justify-center gap-2">
+              <Lock size={16} className="text-gold-500" />
               Essas orações estavam guardadas a 7 chaves dentro de arquivos secretos do vaticano
             </p>
           </div>
@@ -157,6 +155,8 @@ const App: React.FC = () => {
 
         {/* Video Section */}
         <div className="w-full max-w-[400px] mx-auto mb-8 relative group">
+          <p className="text-center text-gray-300 font-medium mb-3 text-sm animate-pulse">Veja o video abaixo</p>
+          
           {/* Decorative glow behind video */}
           <div className="absolute -inset-1 bg-gradient-to-r from-gold-600 to-red-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
           
@@ -168,13 +168,13 @@ const App: React.FC = () => {
         {/* Main CTA Button - DELAYED for VSL (13m 35s) */}
         {showButton && (
           <div className="w-full max-w-[400px] mx-auto mb-12 px-4 sm:px-0 animate-in fade-in duration-1000 slide-in-from-bottom-4">
-            <button 
-              onClick={() => setShowOfferPage(true)}
+            <a 
+              href="https://go.perfectpay.com.br/PPU38CQ5T9B"
               className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-extrabold text-xl md:text-2xl py-5 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.5)] animate-pulse hover:animate-none hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 border-b-4 border-green-800"
             >
               QUERO RECEBER AS ORAÇÕES
               <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-            </button>
+            </a>
             <p className="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1">
               <Lock size={12} /> Acesso seguro e imediato
             </p>
